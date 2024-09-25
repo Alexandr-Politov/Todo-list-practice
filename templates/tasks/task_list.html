@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>TODO list</h1>
-  <br>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>TODO list</h1>
+    <a href="{% url 'tasks:task-create' %}" class="btn btn-primary">
+        Add task
+    </a>
+  </div>
+
   
+  <br>
+
   {% if task_list %}
     {% for task in task_list %}
         <h4>
-          {{ task.name }} 
-          {% if task.is_done %} 
+          {{ task.name }}
+          {% if task.is_done %}
             <span style="color: green">Done</span>
           {% else %}
             <span style="color: red">Not done</span>
           {% endif %}
         </h4>
-        {% if task.deadline %} 
+        {% if task.deadline %}
           <p><u>Deadline:</u> {{ task.deadline }}</p>
-        {% endif %} 
+        {% endif %}
 
         <p><b>Description:</b> {{ task.content }}</p>
         <p><u>Created:</u> {{ task.created_at }}</p>
         <p><u>Tags:</u> {% for tag in task.tags.all %}{{ tag.name }}{% endfor %}</p>
+        <a href="{% url 'tasks:task-update' task.id %}">Update</a>
+        <a href="{% url 'tasks:task-delete' task.id %}">Delete</a>
         <hr>
     {% endfor %}
   {% else %}
