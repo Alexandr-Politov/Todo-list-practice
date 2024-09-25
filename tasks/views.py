@@ -7,6 +7,7 @@ from tasks.models import Task
 
 class TaskListView(generic.ListView):
     model = Task
+    paginate_by = 2
 
     def get_context_data(self, *, object_list = None, **kwargs):
         context = super().get_context_data(**kwargs)
