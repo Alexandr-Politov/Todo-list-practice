@@ -10,7 +10,7 @@ class TaskListView(generic.ListView):
     model = Task
     paginate_by = 2
 
-    def get_context_data(self, *, object_list = None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         search = self.request.GET.get("search")
         context["search_form"] = SearchForm(initial={"search": search})
@@ -57,10 +57,12 @@ class TagCreateView(generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("tasks:tag-list")
 
+
 class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("tasks:tag-list")
+
 
 class TagDeleteView(generic.DeleteView):
     model = Tag

@@ -9,4 +9,5 @@ class TaskAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     list_filter = ["deadline", "is_done"]
 
+
 admin.site.register(Tag)
